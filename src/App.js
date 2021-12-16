@@ -9,12 +9,14 @@ import Map from './Map';
 import SignUp from './SignUp';
 
 function App() {
+  const [user, setUser] = useState(null)
+
 
   return (
     <div className="App">
       <Routes>
-        <Route path="/" element={<Main />} />
-        <Route path="/map" element={<Map />} />
+        <Route path="/" element={<Main setUser={setUser}/>} />
+        <Route path="/map" element={<Map user={user} />} />
         <Route path="/signup" element={<SignUp />} />
         
       </Routes>

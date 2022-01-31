@@ -24,8 +24,8 @@
 
 }
 #logod{
-    height:50px;
-    width:100px;
+    height:100px;
+    width:200px;
 }
 .mainsubmit{
     font-size: 15px;
@@ -161,8 +161,8 @@ img{
     display: block;
     margin-left: auto;
     margin-right: auto;
-    height: 50px;
-    width: 50px;
+    height: 200px;
+    width: 200px;
 }
 #forming{
     display:flex;
@@ -292,6 +292,23 @@ img{
 .info{
     background-image: radial-gradient(circle farthest-side, #f0b255, #f8b500);
 }
+#ven-rate{
+    color:rgb(179, 75, 159);
+    text-align: center;
+    font-size:50px;
+    font-weight: bold;
+}
+#note{
+    font-size: 22px;
+    text-align: center;
+    color: rgb(179, 75, 159);
+}
+#stret{
+    color:rgb(179, 75, 159);
+    font-size: 25px;
+    font-weight: bolder;
+    text-align: center;
+}
 #window-style{
     text-align: center;
     text-transform: uppercase;
@@ -314,4 +331,94 @@ img{
     /* display: inline-block; */
         font-size: 30px;
 
+}
+
+
+.cardy{
+    text-align: center;
+    background-color: var(--background);
+    display: block;
+    width: 300px;
+    min-height: 90px;
+    cursor: pointer;
+    padding: 20px;
+    border-style: groove;
+    border-color: green;
+    margin: calc(10vh - 20px);
+    border: 3px solid #00fa36;
+    box-shadow: 10px -10px 0 -3px var(--background), 10px -10px #2b9b14,
+            20px -20px 0 -3px var(--background), 20px -20px #99ff13,
+            30px -30px 0 -3px var(--background), 30px -30px #25410e,
+            40px -40px 0 -3px var(--background), 40px -40px #1fa366;
+}
+
+.cardy:hover {
+    animation: shadowave 1s ease infinite;
+  }
+  
+  
+  @keyframes shadowave {
+    0% {
+      border: 3px solid #00fa36;
+      box-shadow: 10px -10px 0 -3px var(--background), 10px -10px #2b9b14,
+        20px -20px 0 -3px var(--background), 20px -20px #99ff13,
+        30px -30px 0 -3px var(--background), 30px -30px #25410e,
+        40px -40px 0 -3px var(--background), 40px -40px #1fa366;
+    }
+    20% {
+      border: 3px solid #1fa366;
+      box-shadow: 10px -10px 0 -3px var(--background), 10px -10px #00fa36,
+        20px -20px 0 -3px var(--background), 20px -20px #2b9b14,
+        30px -30px 0 -3px var(--background), 30px -30px #99ff13,
+        40px -40px 0 -3px var(--background), 40px -40px  #25410e;
+    }
+    40% {
+      border: 3px solid #25410e;
+      box-shadow: 10px -10px 0 -3px var(--background), 10px -10px #1fa366,
+        20px -20px 0 -3px var(--background), 20px -20px #00fa36,
+        30px -30px 0 -3px var(--background), 30px -30px #2b9b14,
+        40px -40px 0 -3px var(--background), 40px -40px #99ff13;
+    }
+    60% {
+      border: 3px solid #99ff13;
+      box-shadow: 10px -10px 0 -3px var(--background), 10px -10px #25410e,
+        20px -20px 0 -3px var(--background), 20px -20px #1fa366,
+        30px -30px 0 -3px var(--background), 30px -30px #00fa36,
+        40px -40px 0 -3px var(--background), 40px -40px #2b9b14;
+    }
+    80% {
+      border: 3px solid #2b9b14;
+      box-shadow: 10px -10px 0 -3px var(--background), 10px -10px #99ff13,
+        20px -20px 0 -3px var(--background), 20px -20px  #25410e,
+        30px -30px 0 -3px var(--background), 30px -30px #1fa366,
+        40px -40px 0 -3px var(--background), 40px -40px #00fa36;
+    }
+    100% {
+      border: 3px solid #00fa36;
+      box-shadow: 10px -10px 0 -3px var(--background), 10px -10px #2b9b14,
+        20px -20px 0 -3px var(--background), 20px -20px #99ff13,
+        30px -30px 0 -3px var(--background), 30px -30px #25410e,
+        40px -40px 0 -3px var(--background), 40px -40px #1fa366;
+    }
+    
+  }
+  /* .shadow-wave {
+    --primary: #00fa36;
+    --secondary: #052e01;
+    --background: rgb(245, 161, 255);
+    --green: #2b9b14;
+    --yellow: #99ff13;
+    --orange: #25410e;
+    --red: #1fa366;
+  }  */
+
+  @media (min-width: 1200px) {
+    .vendor-li {
+        display: flex;
+        flex-wrap: wrap;
+    }
+    
+    #card{
+        width: calc(33% - 2rem);
+    }
 }

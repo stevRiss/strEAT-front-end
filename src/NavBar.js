@@ -66,8 +66,7 @@ function NavBar({setUser, user} ){
             
             {/* <img src={logo}/> */}
             <div id='welcome-container'>
-                <h4>Welcome: {user.username}!</h4>
-                {/* <img id='pro-pic' src='https://image.shutterstock.com/image-vector/default-profile-picture-avatar-photo-260nw-1681253560.jpg'/> */}
+                <div id='welc'>Welcome: {user.username}!</div>
                 <button className='edit-bttn' onClick={handleDets}>Account Details</button>
                 <button className='edit-bttn' onClick={handleLogOut}>LOG OUT</button>
             </div>

@@ -1,4 +1,5 @@
 import {useRef,  useState} from "react";
+import './Account.css';
 
 function Account({user}){
     const [ed, setEd] = useState(false)
@@ -41,27 +42,28 @@ function Account({user}){
             {ed ? 
                 <div id='forming'>
                     <form  onSubmit={e => handleUp(e)}>
-                        <h3>edit username</h3>
-                        <input className='inputs' placeholder={user.username}  ref={usernameRef}></input>
-                        <h3>edit email</h3>
-                        <input className='inputs' placeholder={user.email} ref={emailRef}></input>
-                        <h3>edit password</h3>
-                        <input className='inputs' placeholder='New Password' type='password' ref={passwordRef}></input>
-                        <div></div>
-                        <button className='edit-bttn' type='submit'>Submit</button>
+                        <div className='edits'>Edit Username</div>
+                        <input className='acct-inputs' placeholder={user.username}  ref={usernameRef}></input>
+                        <div className='edits'>Edit E-mail</div>
+                        <input className='acct-inputs' placeholder={user.email} ref={emailRef}></input>
+                        <div className='edits'>Edit Password</div>
+                        <input className='acct-inputs' placeholder='New Password' type='password' ref={passwordRef}></input>
+                        {/* <div></div> */}
+                        <button id='new-rate' type='submit'>Submit</button>
                     </form>
                 </div>
             
                 : 
                 <div className='details'>
-                    <h1>Account Details</h1>
-                    <h2>Username: {user.username}</h2>
-                    <h2>E-mail: {user.email}</h2>
+                    <h1 id='rate-heading'>Account Details</h1>
+                    <div className='acct'>Username: <strong>{user.username}</strong></div>
+                    <div className='acct'>E-mail: <strong>{user.email}</strong></div>
+                    <button className='edit-bttn' onClick={handleEd}>Edit username or password</button>
                 </div>
                 }
 
             
-            <button onClick={handleEd}>Edit username or password</button>
+            
 
         </div>
 

@@ -10,7 +10,6 @@ const mapStyles = {
   width: '100%',
   height: '100%'
 };
-// const [vendors, setVendors] = useState([])
 
 export class MapContainer extends Component {
 
@@ -18,12 +17,13 @@ export class MapContainer extends Component {
     
   componentDidMount = ( ) => {
     const vendorList = this.props.vendors.map(vendor => (
-      {location: {lat: vendor.lat, lng: vendor.lng}, name: vendor.name, rating: vendor.rating, picture_url: vendor.picture_url}))
+      {location: {lat: vendor.lat, lng: vendor.lng}, name: vendor.name, rating: vendor.rating, picture_url: vendor.picture_url, address: vendor.address}))
 
     this.setState({
       destinations: vendorList
     })
   }
+  //useeffect
     
   
   state = {
@@ -40,7 +40,7 @@ export class MapContainer extends Component {
       address: ''
     }
   }
-
+//state
   
 
   renderDestinations = () => {
@@ -53,6 +53,7 @@ export class MapContainer extends Component {
         name={destination.name}
         rating={destination.rating}
         picture_url={destination.picture_url}
+        address={destination.address}
         
       />
       
@@ -66,6 +67,7 @@ export class MapContainer extends Component {
       activeMarker: marker,     //used to show the info window when someone clicks on a marker
       showingInfoWindow: true
     });
+    //onClick
 
     onClose = props => {
       if (this.state.showingInfoWindow) { //used to close the info window resets state
@@ -75,6 +77,7 @@ export class MapContainer extends Component {
         });
       }
     };
+    //onClick
 
      inputChange = event => {
       this.setState({
@@ -84,6 +87,7 @@ export class MapContainer extends Component {
        }
       })
      }
+     //onChange
 
      handleSubmit = event => {
       event.preventDefault();
@@ -97,13 +101,14 @@ export class MapContainer extends Component {
        })}
       )
     }
+    //onSubmit
 
     handleFavorite = () => {
        const navigate = useNavigate();
        navigate('/newrating', {replace: true})
-
-
     }
+    //handler
+
     // handleClick = ()  => {
     //   axios.delete(`http://localhost:3000/vendors/1`)
       
@@ -125,7 +130,7 @@ export class MapContainer extends Component {
       }
       return coords
      }
-
+//geocoding function
   
   render() {
     
@@ -134,8 +139,8 @@ export class MapContainer extends Component {
 
     return (
       <div>
-        <h2 className='welcome'>The quickest way to find and keep track of street food vendors in New York City!</h2>
-        <h3>Note: strEAT Ratings are an average of all user ratings!</h3>
+        <h2 id='welc'>The quickest way to find and keep track of street food vendors in New York City!</h2>
+        <div id='note'>Note: strEAT Ratings are an average of all user ratings!</div>
         <div id='forming'>
           <form onSubmit={this.handleSubmit}>
             <input className='inputs' type="text" name="address" onChange={this.inputChange} />
@@ -145,9 +150,9 @@ export class MapContainer extends Component {
 
         <Map
             google={this.props.google}   //this loads the map onto the page with an inital center
-            zoom={12}
+            zoom={13}
             style={mapStyles}
-            initialCenter={{ lat: 40.7128, lng: -74.0060}}
+            initialCenter={{ lat: 40.757975, lng: -73.985543}}
             gestureHandling= "cooperative"
             onClick={this.handleCLick}
           >
@@ -166,12 +171,14 @@ export class MapContainer extends Component {
               >
                 <div className='info'>
                   <h2 id='window-style'>{this.state.selectedPlace.name}</h2>
-                  <h3>strEAT Rating</h3>
-                  <h1>
+                  <div id='stret'>{this.state.selectedPlace.address}</div>
+                  <div id='stret'>strEAT Rating</div>
+                  <div id='ven-rate'>
                     {this.state.selectedPlace.rating}
-                  </h1>
+                  </div>
+                  <img id='window-pic' src={this.state.selectedPlace.picture_url} />
                 </div>
-                <img id='window-pic' src={this.state.selectedPlace.picture_url} />
+                
               </InfoWindow>
           </Map>  
         </div>    
@@ -181,7 +188,7 @@ export class MapContainer extends Component {
 }
 
 export default GoogleApiWrapper({
-  apiKey: 'API KEY'
+  apiKey: 'AIzaSyAOM_osGewNehPiY35iiyWR8pkMW0qrE50'
 })(MapContainer);
 
 

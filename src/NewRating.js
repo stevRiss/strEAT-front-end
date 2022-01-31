@@ -60,50 +60,33 @@ function NewRating({vendors, user, userRatings, setUserRatings} ) {
                 },
                 body: JSON.stringify(input),
                 })
-                .then((r) => r.json())
-                .then(newRatings => {
-    
-                    console.log(input)
-                    if(newRatings === []){
-                        alert('rating already exists for vendor')
+                .then((r) => {
+                    if(r.ok){
+                        r.json().then(newRatings => {
+                            setNewRating(false)
+                            alert("new rating created")
+                            window.location.reload(false) 
+                        })
                     }else{
-                        setNewRating(false)
-                        alert("new rating created")
-                        window.location.reload(false)
-
+                        r.json().then(error => alert('Vendor already rated!'))
                     }
-                    //   navigate('/map',  {replace: true})
-                    }) 
-            
-                
+                })
+                    
+                // .then(newRatings => {
+    
+                //     console.log(input)
+                //     if(error){
+                //         alert('rating already exists for vendor')
+                //     }else{
+                //         setNewRating(false)
+                //         alert("new rating created")
+                //         window.location.reload(false)
+
+                //     }
+                //     }) 
+                          
     }
      
-
-        // if(news === false){
-        //     fetch("/ratings", {
-        //         method: "POST",
-        //         headers: {
-        //           "Content-Type": "application/json",
-        //         },
-        //         body: JSON.stringify(input),
-        //       })
-        //       .then((r) => r.json())
-        //       .then(newRatings => {
-    
-        //             console.log(input)
-    
-    
-        //             console.log(newRatings)
-        //             //   navigate('/map',  {replace: true})
-        //               alert("new rating created")
-        //             }) 
-        // }
-          
-
-         
-
-        
-
     return (
 
     <div>

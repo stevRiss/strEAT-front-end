@@ -73,7 +73,7 @@ function RatingCard({userRatings, rating}) {
             <div>
                 {/* {console.log(rating.vendor.name)} */}
                 <h1 id='head-rate' onClick={exit}>{rating.vendor.name}: </h1>
-                <h2 onClick={exit}>StrEAT Rating: {nums}</h2>
+                <h2 onClick={exit}>StrEAT Rating: {Math.round(nums * 100) / 100}</h2>
                 {edit ?
                     <div>
                         <form onSubmit={e => handleUpdate(e)}>

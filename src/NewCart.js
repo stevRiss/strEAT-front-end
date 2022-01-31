@@ -74,8 +74,11 @@ function NewCart ({user, vendors, setVendors}) {
 
 
                 console.log(newVendors)
-                //   navigate('/map',  {replace: true})
-                  alert("new vendor added")
+                alert("new vendor added")
+                window.location.reload(false)
+
+                navigate('/map',  {replace: true})
+                
                 })               
           
     }

@@ -12,7 +12,11 @@
     /* list-style: none; */
 
 }
-
+#welc{
+    font-size: 30px;
+    color: rgb(179, 75, 159);
+    text-align: center;
+}
 #logos{
     height: 60px;
     width: 100px;
@@ -91,6 +95,9 @@ li {
     background-image: radial-gradient(circle farthest-side, #f0b255, #f8b500);
     text-align: center;
 
+}
+#welcome-container{
+    margin: 20px;
 }
 
 

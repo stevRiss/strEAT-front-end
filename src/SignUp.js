@@ -28,6 +28,8 @@ function SignUp({setUser}){
                   r.json().then(user => {
                       console.log(user)
                       setUser(user)
+                      
+
                       navigate('/map', { replace: true })
                   })
               }else{

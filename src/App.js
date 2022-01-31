@@ -11,7 +11,7 @@ import NewCart from './NewCart';
 import AllVendors from './AllVendors';
 import NewRating from './NewRating';
 import Account from './Account';
-
+import NewMapPage from './NewMapPage';
 function App() {
   const [user, setUser] = useState(null)
   const [vendors,setVendors] = useState([])
@@ -78,6 +78,7 @@ function App() {
           <Route path="/list" element={ <AllVendors user={user} setFilterVendors={setFilterVendors} filterVendors={filterVendors} vendors={vendors} userRatings={userRatings} /> } />
           <Route path='/newrating' element={ <NewRating vendors={vendors} user={user} userRatings={userRatings} setUserRatings={setUserRatings} />} />
           <Route path='/account' element={<Account user={user} />} /> 
+          <Route path='/newmap' element={<NewMapPage vendors={vendors} />} />
         </Routes>
       </div>
     );

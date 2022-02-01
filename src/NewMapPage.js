@@ -1,6 +1,6 @@
 import {useEffect, useState} from 'react'
 import axios from 'axios'
-import {Map, GoofgleApiWrapper, Marker, InfoWindow } from 'google-maps-react'
+import {Map, GoogleApiWrapper, Marker, InfoWindow } from 'google-maps-react'
 
 function NewMapPage({vendors}) {
     const [destinations, setDestinations] = useState([])
@@ -9,6 +9,10 @@ function NewMapPage({vendors}) {
     const [selectedPlace, setSelectedPlace] = useState({})
     const [location, setLocation] = useState({address: ''})
 
+    const mapStyles = {
+      width: '100%',
+      height: '100%'
+    };
 
     useEffect(() => {
         const vendorList = vendors.map(vendor => (
@@ -18,7 +22,7 @@ function NewMapPage({vendors}) {
         setDestinations(vendorList)
     }, []);
 
-    renderDestinations = () => {
+    const renderDestinations = () => {
         if(destinations.length > 0) {
             return destinations.map(destination => {
                 return (
@@ -37,39 +41,41 @@ function NewMapPage({vendors}) {
         }
     }
 
-    onMarkerClick = (ven, marker, e) => {
-        setSelectedPlace(ven)
-        setActiveMarker(marker)
-        setShowingInfoWindow(true)
-    }
+    // onMarkerClick = (ven, marker, e) => {
+    //     setSelectedPlace(ven)
+    //     setActiveMarker(marker)
+    //     setShowingInfoWindow(true)
+    // }
 
 
 
-    getGeocode = async function(location) {
-        let address = location.address.split(" ").join("+")
-        let url = `https://maps.googleapis.com/maps/api/geocode/json?address=${address}&key=AIzaSyAOM_osGewNehPiY35iiyWR8pkMW0qrE50`
-        console.log(url)
-        const response = await axios.get(url)
-        const data = response.data.results[0]
-        const coords = {
-          name: data.formatted_address,
-          location: {
-            lat: data.geometry.location.lat,
-            lng: data.geometry.location.lng
-          }
-        }
-        return coords
-       }
+    // getGeocode = async function(location) {
+    //     let address = location.address.split(" ").join("+")
+    //     let url = `https://maps.googleapis.com/maps/api/geocode/json?address=${address}&key=AIzaSyAOM_osGewNehPiY35iiyWR8pkMW0qrE50`
+    //     console.log(url)
+    //     const response = await axios.get(url)
+    //     const data = response.data.results[0]
+    //     const coords = {
+    //       name: data.formatted_address,
+    //       location: {
+    //         lat: data.geometry.location.lat,
+    //         lng: data.geometry.location.lng
+    //       }
+    //     }
+    //     return coords
+    //    }
 
     return(
         <div>
             <Map
-            google={google}   //this loads the map onto the page with an inital center
+            google={window.google}
+            // google={google}   //this loads the map onto the page with an inital center
             zoom={13}
             style={mapStyles}
             initialCenter={{ lat: 40.757975, lng: -73.985543}}
             gestureHandling= "cooperative"
-            onClick={this.handleCLick}>
+            // onClick={this.handleCLick}
+            >
             
 
             {renderDestinations()}
@@ -77,7 +83,7 @@ function NewMapPage({vendors}) {
             <InfoWindow
                 marker={activeMarker}
                 visible={showingInfoWindow} //this sets state for info window and creates a div for the info to live wihtin the info window
-                onClose={this.onClose} //when the window is closed stat is changed back to false
+                // onClose={this.onClose} //when the window is closed stat is changed back to false
                 // user={this.props.user}
               >
                 <div className='info'>
@@ -96,4 +102,6 @@ function NewMapPage({vendors}) {
     )
 }
 
-export default NewMapPage
+export default GoogleApiWrapper({
+  apiKey: 'AIzaSyAOM_osGewNehPiY35iiyWR8pkMW0qrE50'
+})(NewMapPage);

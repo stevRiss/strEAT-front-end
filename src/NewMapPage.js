@@ -2,7 +2,7 @@ import {useEffect, useState} from 'react'
 import axios from 'axios'
 import {Map, GoogleApiWrapper, Marker, InfoWindow } from 'google-maps-react'
 
-function NewMapPage({vendors}) {
+function NewMapPage({vendors, props}) {
     const [destinations, setDestinations] = useState([])
     const [showingInfoWindow, setShowingInfoWindow] = useState(false)
     const [activeMarker, setActiveMarker] = useState({})
@@ -48,6 +48,29 @@ function NewMapPage({vendors}) {
     // }
 
 
+    const getPosition = () => {
+      if (navigator.geolocation) {
+      navigator.geolocation.getCurrentPosition(showPosition, posError); // Passing in a success callback and an error callback fn
+      } else {
+      alert("Sorry, Geolocation is not supported by this browser."); // Alert is browser does not support geolocation
+      }
+      }
+      
+
+      const posError = () => {
+        if (navigator.permissions) {
+        navigator.permissions.query({ name: 'geolocation' }).then(res => {
+        if (res.state === 'denied') {
+        alert('Enable location permissions for this website in your browser settings.')
+        }
+        })
+        } else {
+        alert('Unable to access your location. You can continue by submitting location manually.') // Obtaining Lat/long from address necessary
+        }
+        }
+
+        
+            
 
     // getGeocode = async function(location) {
     //     let address = location.address.split(" ").join("+")
@@ -67,6 +90,7 @@ function NewMapPage({vendors}) {
 
     return(
         <div>
+          <button onClick={getPosition}>ffff</button>
             <Map
             google={window.google}
             // google={google}   //this loads the map onto the page with an inital center
@@ -74,7 +98,7 @@ function NewMapPage({vendors}) {
             style={mapStyles}
             initialCenter={{ lat: 40.757975, lng: -73.985543}}
             gestureHandling= "cooperative"
-            // onClick={this.handleCLick}
+            // onClick={handleClick}
             >
             
 

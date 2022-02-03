@@ -77,6 +77,27 @@ function NewMapPage({vendors, props}) {
           }
 
 
+          const convertToAddress = (lat, long) => {
+            fetch('http://localhost:3000/googlemaps')
+            .then(res => res.json())
+            .then(obj => getAddress(lat, long, obj.api_key))
+            }
+  
+          const getAddress = (lat, long, googleKey) => {
+            fetch(`https://maps.googleapis.com/maps/api/geocode/json?latlng=${lat},${long}&key=${googleKey}`)
+            .then(res => res.json())
+            .then(address => setZip(address))
+            }
+  
+            const setZip = (address) => {
+              let city = address.results[5].address_components[2].short_name
+              let state = address.results[5].address_components[4].short_name
+              let postal = address.results[5].address_components[0].short_name
+              console.log(city)
+              props.set_city(city)
+              props.set_state(state)
+              props.set_postal_code(postal)
+              }
         
 
         

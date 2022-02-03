@@ -68,6 +68,16 @@ function NewMapPage({vendors, props}) {
         alert('Unable to access your location. You can continue by submitting location manually.') // Obtaining Lat/long from address necessary
         }
         }
+        const showPosition = (position) => {
+          let lat = position.coords.latitude // You have obtained latitude coordinate!
+          let long = position.coords.longitude // You have obtained longitude coordinate!
+          props.set_lat(lat) // Using dispatch to modify lat store state
+          props.set_long(long) // Using dispatch to modify long store state
+          convertToAddress(lat, long) // Will convert lat/long to City, State, & Zip code
+          }
+
+
+        
 
         
             
